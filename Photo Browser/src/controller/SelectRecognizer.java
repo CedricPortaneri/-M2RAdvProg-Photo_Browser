@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ public class SelectRecognizer{
 		super();
 		this.menuItemObs = mIO;
 		this.abstractButtonObs = mAB;
-		observableInit();
+		//observableInit();
 	}
 	
 	public void observableInit(){
@@ -48,7 +48,7 @@ public class SelectRecognizer{
 	
 	public void handleSelection(String str){
 
-		SelectEvent e = new SelectEvent(str);
+		/*SelectEvent e = new SelectEvent(str);
 		for (SelectionListener l : listeners){
 			l.selectionRecognized(e);
 		}
@@ -69,3 +69,4 @@ public class SelectRecognizer{
 
 
 }
+*/

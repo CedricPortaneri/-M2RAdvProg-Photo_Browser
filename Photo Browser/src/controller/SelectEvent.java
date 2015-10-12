@@ -1,4 +1,4 @@
-package controller;
+/*package controller;
 
 import java.util.EventObject;
 
@@ -6,7 +6,7 @@ public class SelectEvent extends EventObject {
 
 	/**
 	 * 
-	 */
+	 
 	private static final long serialVersionUID = 1L;
 	
 	public SelectEvent(Object arg0) {
@@ -16,3 +16,4 @@ public class SelectEvent extends EventObject {
 
 
 }
+*/

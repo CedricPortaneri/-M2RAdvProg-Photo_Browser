@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.TextInputListener;
 import model.MainModel;
 
 public class MainView extends JFrame  {
@@ -20,25 +21,36 @@ public class MainView extends JFrame  {
 	private Menu menu;
 	private StatusBar statueBar;
 	private ToolBar toolBar;
+	private PhotosViewer photoViewer;
 
 	public MainView(MainModel model) {
 
-		this.setSize(new Dimension(600, 400));
+		this.setSize(new Dimension(600, 500));
 		this.setTitle("Photos Browser");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
+		
 		this.mainPanel = new JPanel();
-		this.mainPanel.setPreferredSize(new Dimension(600, 400));
+		this.setPreferredSize(new Dimension(600, 500));
 		this.model = model;
-		this.menu = new Menu(); 
+		this.menu = new Menu(model); 
 		StatusBar status = new StatusBar(new JLabel(this.model.getStatu()));
 		this.statueBar = status;
-		this.toolBar = new ToolBar();
+		photoViewer = new PhotosViewer(model);
+		this.toolBar = new ToolBar(this.model);
+		
 		initView();
 		this.setContentPane(mainPanel);
 		this.setVisible(true);
 
 	}
+
+
+
+	public PhotosViewer getPhotoViewer() {
+		return photoViewer;
+	}
+
 
 
 	public void initView() {
@@ -47,10 +59,8 @@ public class MainView extends JFrame  {
 
 		mainPanel.setLayout(new BorderLayout());
 
-		PhotosViewer photoViewer = new PhotosViewer();
-		
-		mainPanel.add(toolBar,BorderLayout.WEST);	
 		mainPanel.add(photoViewer,BorderLayout.CENTER);
+		mainPanel.add(toolBar,BorderLayout.WEST);	
 		mainPanel.add(statueBar,BorderLayout.SOUTH);
 	
 	}

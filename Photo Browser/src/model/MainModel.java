@@ -1,5 +1,4 @@
 package model;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -12,10 +11,10 @@ public class MainModel extends Observable {
 	private MainView vue;
 	private MainController controller;
 	
-	private ArrayList<BufferedImage> gallery;
+	private ArrayList<String> gallery;
 	private String statu;
 
-	public MainModel(ArrayList<BufferedImage> gallery) {
+	public MainModel(ArrayList<String> gallery) {
 		this.gallery = gallery;
 		this.statu = "Nothing";
 		
@@ -23,6 +22,7 @@ public class MainModel extends Observable {
 		this.controller = new MainController(this);
 
 		this.addObserver(this.vue.getStatueBar());
+		this.addObserver(this.vue.getPhotoViewer().getScroll());
 	}
 	
 
@@ -52,16 +52,18 @@ public class MainModel extends Observable {
 		this.controller = controller;
 	}
 
-	public ArrayList<BufferedImage> getGallery() {
+	public ArrayList<String> getGallery() {
 		return gallery;
 	}
 
-	public void setGallery(ArrayList<BufferedImage> gallery) {
+	public void setGallery(ArrayList<String> gallery) {
 		this.gallery = gallery;
 	}
 
 	public static void main (String[] args){
-		MainModel photoBrowser = new MainModel(null);
+		ArrayList<String> defaultPhotos = new ArrayList<String>();
+		defaultPhotos.add("isaac.png");
+		MainModel photoBrowser = new MainModel(defaultPhotos);
 	}
 	
 	

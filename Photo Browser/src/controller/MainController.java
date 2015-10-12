@@ -6,18 +6,19 @@ import model.MainModel;
 public class MainController {
 	
 	private MainModel model;
-	private SelectRecognizer sr;
+	//private SelectRecognizer sr;
 	// Observer/Observable pattern implemented with listener
 	public MainController(MainModel model){
 		
 		this.model = model;
 		
-		SelectRecognizer sr = new SelectRecognizer(this.model.getVue().getMenu().getListMenuItem(),this.model.getVue().getToolBar().getListButton());
+		/*SelectRecognizer sr = new SelectRecognizer(this.model.getVue().getMenu().getListMenuItem(),this.model.getVue().getToolBar().getListButton());
 		this.sr = sr;
 		StatueSelectionListener menuListener = new StatueSelectionListener(model);
-		sr.registerListener(menuListener);
+		sr.registerListener(menuListener);*/
 		
 	}
+	/*
 	public SelectRecognizer getSr() {
 		return sr;
 	}

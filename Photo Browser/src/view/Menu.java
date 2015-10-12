@@ -1,9 +1,13 @@
 package view;
 
 import java.util.ArrayList;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+
+import model.MainModel;
+import controller.StatueSelectionListener;
 
 public class Menu extends JMenuBar {
 
@@ -14,7 +18,7 @@ public class Menu extends JMenuBar {
 
 	private ArrayList<JMenuItem> listMenuItem;
 
-	public Menu(){
+	public Menu(MainModel model){
 		listMenuItem = new ArrayList<JMenuItem>();
 
 		JMenu fileMenu = new JMenu("File");
@@ -53,7 +57,12 @@ public class Menu extends JMenuBar {
 
 		this.add(fileMenu);
 		this.add(viewMenu);
-
+		
+		StatueSelectionListener selectListener = new StatueSelectionListener(model);
+		for (JMenuItem l :listMenuItem){
+			l.addActionListener(selectListener);
+		}
+		
 
 	}
 	

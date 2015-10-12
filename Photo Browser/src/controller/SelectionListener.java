@@ -1,10 +1,9 @@
 package controller;
 
-import java.util.EventListener;
+import java.awt.event.ActionListener;
 
 
 
-public interface SelectionListener extends EventListener {
+public interface SelectionListener extends ActionListener {
 	
-		public void selectionRecognized(SelectEvent e);
 }
