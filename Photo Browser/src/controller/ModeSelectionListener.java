@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Cursor;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Ellipse2D;
@@ -29,6 +30,12 @@ public class ModeSelectionListener implements SelectionListener {
 			drawingMode = DModeEnum.valueOf(jr.getText().toString());
 			this.pc.getVue().getPhotoViewer().getScroll().getCurrentPhoto()
 					.setDrawingMode(drawingMode);
+			if (drawingMode.equals(DModeEnum.Text)) {
+				this.pc.getVue().setCursor(new Cursor(Cursor.TEXT_CURSOR));
+			}
+			else {
+				this.pc.getVue().setCursor(Cursor.getDefaultCursor());
+			}
 
 		} else if (e.getSource().getClass().equals(JButton.class)) {
 			JButton jb = (JButton) e.getSource();

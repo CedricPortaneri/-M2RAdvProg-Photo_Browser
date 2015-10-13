@@ -11,6 +11,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import controller.TextInputListener;
 import model.MainModel;
 
 public class PhotosViewer extends JPanel {
@@ -49,6 +50,7 @@ public class PhotosViewer extends JPanel {
 		this.add(jp);
 		this.add(Box.createHorizontalGlue());
 		this.add(Box.createHorizontalGlue());
+		
 
 	}
 

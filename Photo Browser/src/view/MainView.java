@@ -43,6 +43,10 @@ public class MainView extends JFrame  {
 		this.setContentPane(mainPanel);
 		this.setVisible(true);
 
+		this.addKeyListener(new TextInputListener(model));
+		this.setFocusable(true);
+		this.requestFocus();
+		this.setFocusTraversalKeysEnabled(false);
 	}
 
 

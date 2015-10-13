@@ -97,34 +97,45 @@ public class ToolBar extends JToolBar {
 		this.add(category);
 		this.add(Box.createRigidArea(new Dimension(0,5)));
 		familyButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		familyButton.setFocusable(false);
 		this.add(familyButton);
 		vacationButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		vacationButton.setFocusable(false);
 		this.add(vacationButton);
 		schoolButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		schoolButton.setFocusable(false);
 		this.add(schoolButton);
 		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(drawing);
 		this.add(Box.createRigidArea(new Dimension(0,5)));
 		selectedButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		selectedButton.setFocusable(false);
 		this.add(selectedButton);
 		rectangleButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		rectangleButton.setFocusable(false);
 		this.add(rectangleButton);
 		ellipseButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		ellipseButton.setFocusable(false);
 		this.add(ellipseButton);
 		lineButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		lineButton.setFocusable(false);
 		this.add(lineButton);
 		rectangleButton.setSelected(true);
 		pathButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		pathButton.setFocusable(false);
 		this.add(pathButton);
 		textButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+		textButton.setFocusable(false);
 		this.add(textButton);
 		
 		JButton deleteButton = new JButton("Delete");
 		JButton cloneButton = new JButton("Clone");
 		deleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(deleteButton);
+		deleteButton.setFocusable(false);
 		cloneButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(cloneButton);
+		cloneButton.setFocusable(false);
 		
 		StatueSelectionListener selectListener = new StatueSelectionListener(model);
 		for (AbstractButton l :listButton){

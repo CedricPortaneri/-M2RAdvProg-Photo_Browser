@@ -17,7 +17,6 @@ import javax.swing.JComponent;
 import model.DModeEnum;
 import controller.DrawingMouseAdapterListener;
 import controller.DrawingMouseMotionListener;
-import controller.TextInputListener;
 
 public class PhotoComponent extends JComponent {
 
@@ -30,43 +29,50 @@ public class PhotoComponent extends JComponent {
 	private boolean isFlipped;
 	private DModeEnum drawingMode;
 	public ArrayList<CanvasItem> listeCanvas;
+	public ArrayList<TextComponent> listeTexte;
 	public int indiceSelectedCanvas;
 	public CanvasItem selectedCanvas;
 	public CanvasItem currentCanvas;
-    private int selected_x;
-    private int selected_y;
+	private int selected_x;
+	private int selected_y;
 
 	public PhotoComponent(String imgRef) {
 
 		this.drawingMode = DModeEnum.Rectangle;
-		this.imgRef = imgRef;
-		this.listeCanvas = new ArrayList<CanvasItem>();
+		if (imgRef == null) {
+			this.setVisible(false);
+		} else {
+			this.imgRef = imgRef;
 
-		try {
-			this.img = ImageIO.read(new File(this.imgRef));
-			this.setPreferredSize(new Dimension(this.img.getWidth(), this.img
-					.getHeight()));
-			this.setSize(new Dimension(this.img.getWidth(), this.img
-					.getHeight()));
-		} catch (IOException e) {
+			this.listeCanvas = new ArrayList<CanvasItem>();
+			this.listeTexte = new ArrayList<TextComponent>();
+
 			try {
-				this.img = ImageIO.read(new File("cantfind.png"));
+				this.img = ImageIO.read(new File(this.imgRef));
 				this.setPreferredSize(new Dimension(this.img.getWidth(),
 						this.img.getHeight()));
 				this.setSize(new Dimension(this.img.getWidth(), this.img
 						.getHeight()));
-			} catch (IOException e1) {
-				System.err.print("Missing 'cantfind.png' in root file... ");
+			} catch (IOException e) {
+				try {
+					this.img = ImageIO.read(new File("cantfind.png"));
+					this.setPreferredSize(new Dimension(this.img.getWidth(),
+							this.img.getHeight()));
+					this.setSize(new Dimension(this.img.getWidth(), this.img
+							.getHeight()));
+				} catch (IOException e1) {
+					System.err.print("Missing 'cantfind.png' in root file... ");
+				}
 			}
+			this.isFlipped = false;
+			DrawingMouseAdapterListener lst = new DrawingMouseAdapterListener(
+					this);
+			DrawingMouseMotionListener lst2 = new DrawingMouseMotionListener(
+					this);
+			this.addMouseListener(lst);
+			this.addMouseMotionListener(lst2);
+			this.setVisible(true);
 		}
-		this.isFlipped = false;
-
-		DrawingMouseAdapterListener lst = new DrawingMouseAdapterListener(this);
-		DrawingMouseMotionListener lst2 = new DrawingMouseMotionListener(
-				this);
-		this.addMouseListener(lst);
-		this.addMouseMotionListener(lst2);
-
 	}
 
 	public boolean isFlipped() {
@@ -88,7 +94,7 @@ public class PhotoComponent extends JComponent {
 	public ArrayList<CanvasItem> getListeCanvas() {
 		return listeCanvas;
 	}
-	
+
 	public int getSelected_x() {
 		return selected_x;
 	}
@@ -105,6 +111,10 @@ public class PhotoComponent extends JComponent {
 		this.selected_y = selected_y;
 	}
 
+	public ArrayList<TextComponent> getListeTexte() {
+		return listeTexte;
+	}
+
 	public void paintComponent(Graphics graphics) {
 
 		super.paintComponent(graphics);
@@ -114,10 +124,10 @@ public class PhotoComponent extends JComponent {
 
 			Graphics2D g = (Graphics2D) graphics;
 			RenderingHints rh = new RenderingHints(
-		             RenderingHints.KEY_ANTIALIASING,
-		             RenderingHints.VALUE_ANTIALIAS_ON);
-		    g.setRenderingHints(rh);
-		    
+					RenderingHints.KEY_ANTIALIASING,
+					RenderingHints.VALUE_ANTIALIAS_ON);
+			g.setRenderingHints(rh);
+
 			g.setColor(Color.WHITE);
 			g.fillRect(0, 0, getWidth(), getHeight());
 			if (listeCanvas != null) {
@@ -150,11 +160,81 @@ public class PhotoComponent extends JComponent {
 						g.draw(r.getPath());
 
 					}
-					else if (this.listeCanvas.get(i).getClass() == TextItem.class) {
-						TextItem r = (TextItem) this.listeCanvas.get(i);
-						
-						g.setColor(this.listeCanvas.get(i).getInterieurColor());
-						g.drawString(r.getTxt(),r.getX()+2 , r.getY()+5);
+
+				}
+				for (int j = 0; j < listeTexte.size(); j++) {
+					if (this.listeTexte.get(j).getClass() == TextComponent.class) {
+
+						TextItem r = (TextItem) this.listeTexte.get(j).getTi();
+						g.setColor(this.listeTexte.get(j).getTi()
+								.getInterieurColor());
+
+						int lineSep = 0;
+						String texte = r.getTxt();
+						ArrayList<String> listStr = new ArrayList<String>();
+						int width = g.getFontMetrics().stringWidth(
+								this.listeTexte.get(j).getTxt());
+
+						/* If the photo bound is reached the first time */
+						if (width + r.getX() + 2 > this.img.getWidth()) {
+							int fLSize = this.img.getWidth() - r.getX() - 2;
+							int fLNbrChar = 0;
+							int tmpWidth = 0;
+							String tmp = "";
+							int l = 1;
+							int p = 2;
+							/* Find the number of char before the first vspace */
+							while (tmpWidth < fLSize - 2) {
+								tmp = tmp.concat(texte.substring(l, p));
+								tmpWidth = g.getFontMetrics().stringWidth(tmp);
+								fLNbrChar++;
+								l++;
+								p++;
+							}
+
+							listStr.add(texte.substring(0, fLNbrChar));
+							texte = texte.substring(fLNbrChar);
+							width = g.getFontMetrics().stringWidth(texte);
+
+							/* If the photo bound is reached for the other line */
+
+							while (width >= this.img.getWidth()) {
+								int LNbrChar = 0;
+								tmpWidth = 0;
+								tmp = "";
+								l = 1;
+								p = 2;
+								while (tmpWidth < this.img.getWidth() - 8) {
+									tmp = tmp.concat(texte.substring(l, p));
+									tmpWidth = g.getFontMetrics().stringWidth(
+											tmp);
+									LNbrChar++;
+									l++;
+									p++;
+								}
+
+								listStr.add(texte.substring(0, LNbrChar));
+								texte = texte.substring(LNbrChar);
+								width = g.getFontMetrics().stringWidth(texte);
+							}
+							if (width < this.img.getWidth()) {
+								listStr.add(texte);
+							}
+						} else {
+							listStr.add(texte);
+						}
+
+						/* Drawing part */
+						for (int m = 0; m < listStr.size(); m++) {
+							if (m == 0) {
+								g.drawString(listStr.get(m), r.getX(), r.getY());
+							} else {
+								g.drawString(listStr.get(m), 0, r.getY()
+										+ lineSep);
+							}
+							lineSep += 15;
+						}
+
 					}
 				}
 			}

@@ -1,19 +1,10 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
-import javax.swing.JPanel;
 
-import controller.TextInputListener;
-
-public class TextComponent extends JPanel implements KeyListener{
+public class TextComponent extends JComponent {
 
 	/**
 	 * 
@@ -23,18 +14,19 @@ public class TextComponent extends JPanel implements KeyListener{
 	private int y;
 	private TextItem ti ;
 	private String txt;
+	private Color color;
 	
 	
 	public TextComponent(Color interieur , Color contour,int x, int y) {
 		super();
 		this.x = x;
 		this.y = y;
-		this.txt = "test";
+		this.txt = " ";
+		this.color = interieur;
 		this.ti = new TextItem(interieur,contour,txt,x,y);
 		this.add(ti);
 		this.setBackground(Color.BLUE);
 		this.setVisible(true);
-		this.addKeyListener(this);
 		this.setFocusable(true);
 	}
 	
@@ -54,6 +46,18 @@ public class TextComponent extends JPanel implements KeyListener{
 		return txt;
 	}
 
+	
+	public void setTxt(String txt) {
+		this.txt = txt;
+		this.ti = new TextItem(color,color,txt,x,y);
+	}
+	
+	
+
+	public void setTi(TextItem ti) {
+		this.ti = ti;
+	}
+
 	public TextItem getTi() {
 		return ti;
 	}
@@ -71,26 +75,5 @@ public class TextComponent extends JPanel implements KeyListener{
 		this.y = y;
 	}
 
-	@Override
-	public void keyPressed(KeyEvent k) {
-		System.out.println("!!!");
-		char character = k.getKeyChar();
-		System.out.println(character);
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		System.out.println("!!!");
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		System.out.println("!!!");
-		// TODO Auto-generated method stub
-		
-	}
 
 }

@@ -27,7 +27,6 @@ public class DrawingMouseAdapterListener extends MouseAdapter {
 	}
 
 	public void mousePressed(MouseEvent evt) {
-		System.out.println(pc.getDrawingMode().toString());
 		if (evt.getClickCount() == 2) {
 			if (pc.isFlipped()) {
 				pc.setFlipped(false);
@@ -126,8 +125,7 @@ public class DrawingMouseAdapterListener extends MouseAdapter {
 													 */Color.BLUE,
 				/* contourChooser.getBackground() */Color.BLACK, evt.getX(),
 						evt.getY());
-			
-				pc.add(txt);
+				pc.getListeTexte().add(txt);
 				pc.currentCanvas = txt.getTi();
 				pc.repaint();
 				break;

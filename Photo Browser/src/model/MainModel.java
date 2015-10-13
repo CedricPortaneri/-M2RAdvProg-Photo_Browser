@@ -22,7 +22,7 @@ public class MainModel extends Observable {
 		this.controller = new MainController(this);
 
 		this.addObserver(this.vue.getStatueBar());
-		this.addObserver(this.vue.getPhotoViewer().getScroll());
+	
 	}
 	
 
