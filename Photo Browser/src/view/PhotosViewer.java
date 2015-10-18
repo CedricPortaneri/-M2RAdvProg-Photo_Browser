@@ -11,7 +11,6 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import controller.TextInputListener;
 import model.MainModel;
 
 public class PhotosViewer extends JPanel {

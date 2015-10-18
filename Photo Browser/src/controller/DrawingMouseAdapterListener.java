@@ -44,20 +44,16 @@ public class DrawingMouseAdapterListener extends MouseAdapter {
 
 				pc.setSelected_x(evt.getX());
 				pc.setSelected_y(evt.getY());
-				pc.currentCanvas = new RectangleItem(
-				/* interieurChooser.getBackground() */Color.BLUE,
-				/* contourChooser.getBackground() */Color.BLACK, new Rectangle(
+				pc.currentCanvas = new RectangleItem(pc.getInteriorColor(),
+						pc.getContourColor(), new Rectangle(
 						pc.getSelected_x(), pc.getSelected_y(), width, height));
 				break;
 			case Ellipse:
 
 				pc.setSelected_x(evt.getX());
 				pc.setSelected_y(evt.getY());
-				pc.currentCanvas = new EllipseItem(/*
-													 * interieurChooser.
-													 * getBackground()
-													 */Color.BLUE,
-				/* contourChooser.getBackground() */Color.BLACK,
+				pc.currentCanvas = new EllipseItem(pc.getInteriorColor(),
+						pc.getContourColor(),
 						new Ellipse2D.Double(pc.getSelected_x(),
 								pc.getSelected_y(), width, height));
 				break;
@@ -65,8 +61,8 @@ public class DrawingMouseAdapterListener extends MouseAdapter {
 				pc.setSelected_x(evt.getX());
 				pc.setSelected_y(evt.getY());
 				pc.currentCanvas = new LineItem(
-				/* interieurChooser.getBackground() */Color.BLUE,
-				/* contourChooser.getBackground() */Color.BLACK,
+				pc.getInteriorColor(),
+				pc.getContourColor(),
 						new Line2D.Double(pc.getSelected_x(),
 								pc.getSelected_y(), pc.getSelected_x(),
 								pc.getSelected_y()));
@@ -75,8 +71,8 @@ public class DrawingMouseAdapterListener extends MouseAdapter {
 				pc.setSelected_x(evt.getX());
 				pc.setSelected_y(evt.getY());
 				pc.currentCanvas = new PathItem(
-				/* interieurChooser.getBackground() */Color.BLUE,
-				/* contourChooser.getBackground() */Color.BLACK,
+				pc.getInteriorColor(),
+				pc.getContourColor(),
 						new Path2D.Double());
 				PathItem p = (PathItem) pc.currentCanvas;
 				p.getPath().moveTo(pc.getSelected_x(), pc.getSelected_y());
@@ -119,11 +115,8 @@ public class DrawingMouseAdapterListener extends MouseAdapter {
 				}
 				break;
 			case Text:
-				TextComponent txt = new TextComponent(/*
-													 * interieurChooser.
-													 * getBackground()
-													 */Color.BLUE,
-				/* contourChooser.getBackground() */Color.BLACK, evt.getX(),
+				TextComponent txt = new TextComponent(pc.getInteriorColor(),
+						pc.getContourColor(), evt.getX(),
 						evt.getY());
 				pc.getListeTexte().add(txt);
 				pc.currentCanvas = txt.getTi();

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
 import model.DModeEnum;
@@ -35,6 +36,8 @@ public class PhotoComponent extends JComponent {
 	public CanvasItem currentCanvas;
 	private int selected_x;
 	private int selected_y;
+	private Color interiorColor;
+	private Color contourColor;
 
 	public PhotoComponent(String imgRef) {
 
@@ -46,6 +49,8 @@ public class PhotoComponent extends JComponent {
 
 			this.listeCanvas = new ArrayList<CanvasItem>();
 			this.listeTexte = new ArrayList<TextComponent>();
+			
+			this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 			try {
 				this.img = ImageIO.read(new File(this.imgRef));
@@ -65,6 +70,8 @@ public class PhotoComponent extends JComponent {
 				}
 			}
 			this.isFlipped = false;
+			this.interiorColor = Color.LIGHT_GRAY;
+			this.contourColor = Color.BLACK;
 			DrawingMouseAdapterListener lst = new DrawingMouseAdapterListener(
 					this);
 			DrawingMouseMotionListener lst2 = new DrawingMouseMotionListener(
@@ -113,6 +120,22 @@ public class PhotoComponent extends JComponent {
 
 	public ArrayList<TextComponent> getListeTexte() {
 		return listeTexte;
+	}
+
+	public Color getInteriorColor() {
+		return interiorColor;
+	}
+
+	public void setInteriorColor(Color interiorColor) {
+		this.interiorColor = interiorColor;
+	}
+
+	public Color getContourColor() {
+		return contourColor;
+	}
+
+	public void setContourColor(Color contourColor) {
+		this.contourColor = contourColor;
 	}
 
 	public void paintComponent(Graphics graphics) {

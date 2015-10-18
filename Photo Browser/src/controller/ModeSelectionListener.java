@@ -27,7 +27,7 @@ public class ModeSelectionListener implements SelectionListener {
 		DModeEnum drawingMode = DModeEnum.Rectangle;
 		if (e.getSource().getClass().equals(JRadioButton.class)) {
 			JRadioButton jr = (JRadioButton) e.getSource();
-			drawingMode = DModeEnum.valueOf(jr.getText().toString());
+			drawingMode = DModeEnum.valueOf(jr.getActionCommand().toString());
 			this.pc.getVue().getPhotoViewer().getScroll().getCurrentPhoto()
 					.setDrawingMode(drawingMode);
 			if (drawingMode.equals(DModeEnum.Text)) {
@@ -39,7 +39,7 @@ public class ModeSelectionListener implements SelectionListener {
 
 		} else if (e.getSource().getClass().equals(JButton.class)) {
 			JButton jb = (JButton) e.getSource();
-			if (jb.getText().equals("Delete")) {
+			if (jb.getActionCommand().equals("Delete")) {
 				if (this.pc.getVue().getPhotoViewer().getScroll()
 						.getCurrentPhoto().selectedCanvas != null
 						&& this.pc.getVue().getPhotoViewer().getScroll()
@@ -55,7 +55,7 @@ public class ModeSelectionListener implements SelectionListener {
 					this.pc.getVue().getPhotoViewer().getScroll()
 							.getCurrentPhoto().repaint();
 				}
-			} else if (jb.getText().equals("Clone")) {
+			} else if (jb.getActionCommand().equals("Clone")) {
 				if (this.pc.getVue().getPhotoViewer().getScroll()
 						.getCurrentPhoto().getListeCanvas().size() != 0
 						&& this.pc.getVue().getPhotoViewer().getScroll()

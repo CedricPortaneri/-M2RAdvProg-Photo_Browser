@@ -36,17 +36,16 @@ public class DrawingMouseMotionListener extends MouseMotionAdapter {
 
 					if (evt.getY() - pc.getSelected_y() > 0) {
 						pc.currentCanvas = new RectangleItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
+								pc.getInteriorColor(), pc.getContourColor(),
 								new Rectangle(pc.getSelected_x(),
 										pc.getSelected_y(), evt.getX()
 												- pc.getSelected_x(),
 										evt.getY() - pc.getSelected_y()));
 					} else {
 						pc.currentCanvas = new RectangleItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Rectangle(pc.getSelected_x(), evt.getY(),
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Rectangle(
+										pc.getSelected_x(), evt.getY(),
 										evt.getX() - pc.getSelected_x(),
 										pc.getSelected_y() - evt.getY()));
 
@@ -57,20 +56,20 @@ public class DrawingMouseMotionListener extends MouseMotionAdapter {
 					if (evt.getY() - pc.getSelected_y() > 0) {
 
 						pc.currentCanvas = new RectangleItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Rectangle(evt.getX(), pc.getSelected_y(),
-										pc.getSelected_x() - evt.getX(),
-										evt.getY() - pc.getSelected_y()));
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Rectangle(evt.getX(),
+										pc.getSelected_y(), pc.getSelected_x()
+												- evt.getX(), evt.getY()
+												- pc.getSelected_y()));
 
 					} else {
 
 						pc.currentCanvas = new RectangleItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Rectangle(evt.getX(), evt.getY(), pc
-										.getSelected_x() - evt.getX(), pc
-										.getSelected_y() - evt.getY()));
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Rectangle(evt.getX(),
+										evt.getY(), pc.getSelected_x()
+												- evt.getX(),
+										pc.getSelected_y() - evt.getY()));
 
 					}
 				}
@@ -83,19 +82,17 @@ public class DrawingMouseMotionListener extends MouseMotionAdapter {
 
 					if (evt.getY() - pc.getSelected_y() > 0) {
 						pc.currentCanvas = new EllipseItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Ellipse2D.Double(pc.getSelected_x(),
-										pc.getSelected_y(), evt.getX()
-												- pc.getSelected_x(),
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Ellipse2D.Double(
+										pc.getSelected_x(), pc.getSelected_y(),
+										evt.getX() - pc.getSelected_x(),
 										evt.getY() - pc.getSelected_y()));
 					} else {
 						pc.currentCanvas = new EllipseItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Ellipse2D.Double(pc.getSelected_x(),
-										evt.getY(), evt.getX()
-												- pc.getSelected_x(),
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Ellipse2D.Double(
+										pc.getSelected_x(), evt.getY(),
+										evt.getX() - pc.getSelected_x(),
 										pc.getSelected_y() - evt.getY()));
 
 					}
@@ -105,21 +102,20 @@ public class DrawingMouseMotionListener extends MouseMotionAdapter {
 					if (evt.getY() - pc.getSelected_y() > 0) {
 
 						pc.currentCanvas = new EllipseItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Ellipse2D.Double(evt.getX(),
-										pc.getSelected_y(), pc.getSelected_x()
-												- evt.getX(), evt.getY()
-												- pc.getSelected_y()));
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Ellipse2D.Double(
+										evt.getX(), pc.getSelected_y(),
+										pc.getSelected_x() - evt.getX(),
+										evt.getY() - pc.getSelected_y()));
 
 					} else {
 
 						pc.currentCanvas = new EllipseItem(
-						/* interieurChooser.getBackground() */Color.BLUE,
-						/* interieurChooser.getBackground() */Color.BLACK,
-								new Ellipse2D.Double(evt.getX(), evt.getY(), pc
-										.getSelected_x() - evt.getX(), pc
-										.getSelected_y() - evt.getY()));
+						pc.getInteriorColor(),
+								pc.getContourColor(), new Ellipse2D.Double(
+										evt.getX(), evt.getY(),
+										pc.getSelected_x() - evt.getX(),
+										pc.getSelected_y() - evt.getY()));
 
 					}
 				}
@@ -130,10 +126,10 @@ public class DrawingMouseMotionListener extends MouseMotionAdapter {
 					return;
 
 				pc.currentCanvas = new LineItem(
-				/* interieurChooser.getBackground() */Color.BLUE,
-				/* interieurChooser.getBackground() */Color.BLACK,
-						new Line2D.Double(pc.getSelected_x(),
-								pc.getSelected_y(), evt.getX(), evt.getY()));
+				pc.getInteriorColor(),
+						pc.getContourColor(), new Line2D.Double(
+								pc.getSelected_x(), pc.getSelected_y(),
+								evt.getX(), evt.getY()));
 
 				pc.repaint();
 				break;
