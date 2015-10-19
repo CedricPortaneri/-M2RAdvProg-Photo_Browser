@@ -7,8 +7,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import model.MainModel;
-import controller.StatueSelectionListener;
+import controller.MenuListener;
+import controller.StatueListener;
 
+/* Top Menu */
 public class Menu extends JMenuBar {
 
 	/**
@@ -58,9 +60,12 @@ public class Menu extends JMenuBar {
 		this.add(fileMenu);
 		this.add(viewMenu);
 		
-		StatueSelectionListener selectListener = new StatueSelectionListener(model);
+		StatueListener selectListener = new StatueListener(model);
+		MenuListener menuListener = new MenuListener(model);
+		
 		for (JMenuItem l :listMenuItem){
 			l.addActionListener(selectListener);
+			l.addActionListener(menuListener);
 		}
 		
 

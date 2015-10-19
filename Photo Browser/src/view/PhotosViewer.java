@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import model.MainModel;
 
+/* Main part of the application, the Viewer of the photos */
 public class PhotosViewer extends JPanel {
 
 	/**

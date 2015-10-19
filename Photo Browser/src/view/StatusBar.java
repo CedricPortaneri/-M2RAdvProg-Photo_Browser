@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import model.MainModel;
 
+/* Bottom Status Bar */
 public class StatusBar extends JPanel implements Observer {
 	
 	/**

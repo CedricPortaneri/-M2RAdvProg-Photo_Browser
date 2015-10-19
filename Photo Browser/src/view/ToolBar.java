@@ -12,19 +12,18 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
 
 import model.MainModel;
 import controller.ColorChooserListener;
-import controller.ModeSelectionListener;
-import controller.StatueSelectionListener;
+import controller.ModeListener;
+import controller.StatueListener;
 
+/* Left Tool Bar which contain different Drawing and View Mode */
 public class ToolBar extends JToolBar {
 
 	/**
@@ -32,6 +31,9 @@ public class ToolBar extends JToolBar {
 	 */
 	private static final long serialVersionUID = 4268951943328073987L;
 	private ArrayList<AbstractButton> listButton;
+	private JPanel contourChooser;
+	private JPanel interieurChooser;
+	
 	
 	public ToolBar(MainModel model){
 		
@@ -192,8 +194,8 @@ public class ToolBar extends JToolBar {
 		this.add(v2);
 		this.add(v3);
 		
-		JPanel contourChooser = new JPanel();
-		JPanel interieurChooser = new JPanel();
+		contourChooser = new JPanel();
+		interieurChooser = new JPanel();
 		contourChooser.setBackground(Color.black);
 		contourChooser.setName("Outline Color");
 		contourChooser.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -245,11 +247,11 @@ public class ToolBar extends JToolBar {
 		this.add(Box.createRigidArea(new Dimension(0,5)));
 		this.add(v4);
 		
-		StatueSelectionListener selectListener = new StatueSelectionListener(model);
+		StatueListener selectListener = new StatueListener(model);
 		for (AbstractButton l :listButton){
 			l.addActionListener(selectListener);
 		}
-		ModeSelectionListener modeListener = new ModeSelectionListener(model);
+		ModeListener modeListener = new ModeListener(model);
 		for (AbstractButton l :drawingListButton){
 			l.addActionListener(modeListener);
 		}
@@ -259,5 +261,13 @@ public class ToolBar extends JToolBar {
 
 	public ArrayList<AbstractButton> getListButton() {
 		return listButton;
+	}
+
+	public JPanel getContourChooser() {
+		return contourChooser;
+	}
+
+	public JPanel getInterieurChooser() {
+		return interieurChooser;
 	}
 }

@@ -8,8 +8,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JPanel;
 
 import model.MainModel;
-import view.PhotoComponent;
 
+/* Listener for both Interior and Outline Color Chooser Panel in the Tool Bar */
 public class ColorChooserListener extends MouseAdapter {
 	private JPanel type;
 	private MainModel pc;
@@ -29,10 +29,10 @@ public class ColorChooserListener extends MouseAdapter {
 		type.setBackground(new_color);
 		if (type.getName().equals("Inside Color")) {
 
-			pc.getVue().getPhotoViewer().getScroll().getCurrentPhoto()
+			pc.getVue().getPhotoViewer().getScroll().getCurrentPhoto().getModel()
 					.setInteriorColor(new_color);
 		} else if (type.getName().equals("Outline Color")) {
-			pc.getVue().getPhotoViewer().getScroll().getCurrentPhoto()
+			pc.getVue().getPhotoViewer().getScroll().getCurrentPhoto().getModel()
 					.setContourColor(new_color);
 		}
 	}

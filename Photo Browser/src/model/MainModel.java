@@ -2,14 +2,15 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import javax.swing.UIManager;
+
+import myComponents.PhotoUI;
 import view.MainView;
-import controller.MainController;
 
-
+/* Main Class which contain the top properties */ 
 public class MainModel extends Observable {
 	
 	private MainView vue;
-	private MainController controller;
 	
 	private ArrayList<String> gallery;
 	private String statu;
@@ -19,7 +20,6 @@ public class MainModel extends Observable {
 		this.statu = "Nothing";
 		
 		this.vue = new MainView(this);
-		this.controller = new MainController(this);
 
 		this.addObserver(this.vue.getStatueBar());
 	
@@ -44,13 +44,6 @@ public class MainModel extends Observable {
 		this.vue = vue;
 	}
 
-	public MainController getController() {
-		return controller;
-	}
-
-	public void setController(MainController controller) {
-		this.controller = controller;
-	}
 
 	public ArrayList<String> getGallery() {
 		return gallery;
@@ -61,8 +54,11 @@ public class MainModel extends Observable {
 	}
 
 	public static void main (String[] args){
+		
 		ArrayList<String> defaultPhotos = new ArrayList<String>();
 		defaultPhotos.add("isaac.png");
+		
+		UIManager.put(PhotoUI.UI_CLASS_ID, "BasicPhotoUI"); 
 		MainModel photoBrowser = new MainModel(defaultPhotos);
 	}
 	

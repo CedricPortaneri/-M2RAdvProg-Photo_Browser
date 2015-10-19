@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Component;
 
+/* Abstract class that represent every drawing object on the back of the photo */
 public abstract class CanvasItem extends Component {
 
     /**

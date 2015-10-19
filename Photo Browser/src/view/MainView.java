@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import controller.TextInputListener;
 import model.MainModel;
 
+/* Main View which regroup every component of the Photo Browser */
 public class MainView extends JFrame  {
 
 	/**
